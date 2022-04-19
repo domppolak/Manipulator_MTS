@@ -1,1 +1,1 @@
-# Manipulator_MTS
+# Manipulator typu SCARA MTS
