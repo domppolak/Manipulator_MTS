@@ -4802,9 +4802,9 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="SUPPLY3" gate="GND" x="106.68" y="149.86" smashed="yes">
 <attribute name="VALUE" x="104.775" y="146.685" size="1.778" layer="96"/>
 </instance>
-<instance part="C1" gate="G$1" x="66.04" y="165.1" smashed="yes">
-<attribute name="NAME" x="67.564" y="165.481" size="1.778" layer="95"/>
-<attribute name="VALUE" x="67.564" y="160.401" size="1.778" layer="96"/>
+<instance part="C1" gate="G$1" x="60.96" y="165.1" smashed="yes">
+<attribute name="NAME" x="62.484" y="165.481" size="1.778" layer="95"/>
+<attribute name="VALUE" x="62.484" y="160.401" size="1.778" layer="96"/>
 </instance>
 <instance part="C2" gate="G$1" x="106.68" y="165.1" smashed="yes">
 <attribute name="NAME" x="108.204" y="165.481" size="1.778" layer="95"/>
@@ -4847,11 +4847,11 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="U1" gate="PRZETWORNICA-STEP-DOWN" pin="OUT-"/>
 <wire x1="106.68" y1="157.48" x2="106.68" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="53.34" y1="167.64" x2="53.34" y2="157.48" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="157.48" x2="66.04" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="157.48" x2="60.96" y2="157.48" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="66.04" y1="160.02" x2="66.04" y2="157.48" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="157.48" x2="86.36" y2="157.48" width="0.1524" layer="91"/>
-<junction x="66.04" y="157.48"/>
+<wire x1="60.96" y1="160.02" x2="60.96" y2="157.48" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="157.48" x2="86.36" y2="157.48" width="0.1524" layer="91"/>
+<junction x="60.96" y="157.48"/>
 <junction x="106.68" y="157.48"/>
 <pinref part="LM7805CV" gate="LM7805CV" pin="GND"/>
 <wire x1="86.36" y1="157.48" x2="106.68" y2="157.48" width="0.1524" layer="91"/>
@@ -4869,8 +4869,6 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="55.88" y1="111.76" x2="50.8" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="111.76" x2="50.8" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
-<wire x1="50.8" y1="109.22" x2="50.8" y2="106.68" width="0.1524" layer="91"/>
-<junction x="50.8" y="109.22"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="GND@1"/>
@@ -4884,15 +4882,14 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="U1" gate="PRZETWORNICA-STEP-DOWN" pin="OUT+"/>
 <pinref part="LM7805CV" gate="LM7805CV" pin="VI"/>
 <wire x1="53.34" y1="172.72" x2="60.96" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="172.72" x2="66.04" y2="172.72" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="172.72" x2="71.12" y2="172.72" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="172.72" x2="71.12" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="172.72" x2="60.96" y2="177.8" width="0.1524" layer="91"/>
 <junction x="60.96" y="172.72"/>
 <label x="60.96" y="180.34" size="1.778" layer="95" rot="R90" xref="yes"/>
 <wire x1="60.96" y1="180.34" x2="60.96" y2="172.72" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="66.04" y1="167.64" x2="66.04" y2="172.72" width="0.1524" layer="91"/>
-<junction x="66.04" y="172.72"/>
+<wire x1="60.96" y1="167.64" x2="60.96" y2="172.72" width="0.1524" layer="91"/>
+<junction x="60.96" y="172.72"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="VMOT"/>

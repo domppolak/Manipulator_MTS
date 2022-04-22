@@ -5782,6 +5782,10 @@ W = angled&lt;p&gt;
 <wire x1="241.3" y1="134.62" x2="248.92" y2="134.62" width="0.1524" layer="91"/>
 <label x="248.92" y="134.62" size="0.762" layer="95" xref="yes"/>
 </segment>
+<segment>
+<label x="48.26" y="111.76" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="48.26" y1="111.76" x2="53.34" y2="111.76" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="PE15" class="0">
 <segment>
@@ -5789,24 +5793,12 @@ W = angled&lt;p&gt;
 <wire x1="241.3" y1="129.54" x2="248.92" y2="129.54" width="0.1524" layer="91"/>
 <label x="248.92" y="129.54" size="0.762" layer="95" xref="yes"/>
 </segment>
-</net>
-<net name="PA6" class="0">
 <segment>
-<label x="142.24" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="142.24" y1="63.5" x2="144.78" y2="63.5" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="PA7" class="0">
-<segment>
-<label x="142.24" y="58.42" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="142.24" y1="58.42" x2="144.78" y2="58.42" width="0.1524" layer="91"/>
+<label x="48.26" y="116.84" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="48.26" y1="116.84" x2="53.34" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PA5" class="0">
-<segment>
-<label x="185.42" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="185.42" y1="63.5" x2="190.5" y2="63.5" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="LEFT" gate="1" pin="11"/>
 <wire x1="195.58" y1="147.32" x2="190.5" y2="147.32" width="0.1524" layer="91"/>
@@ -5815,10 +5807,6 @@ W = angled&lt;p&gt;
 </net>
 <net name="PB3" class="0">
 <segment>
-<label x="185.42" y="58.42" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="185.42" y1="58.42" x2="190.5" y2="58.42" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="LEFT" gate="1" pin="7"/>
 <wire x1="195.58" y1="157.48" x2="190.5" y2="157.48" width="0.1524" layer="91"/>
 <label x="190.5" y="157.48" size="0.762" layer="95" rot="R180" xref="yes"/>
@@ -5826,24 +5814,24 @@ W = angled&lt;p&gt;
 </net>
 <net name="PA0" class="0">
 <segment>
-<wire x1="96.52" y1="127" x2="104.14" y2="127" width="0.1524" layer="91"/>
-<label x="96.52" y="127" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="LEFT" gate="1" pin="10"/>
 <wire x1="195.58" y1="149.86" x2="190.5" y2="149.86" width="0.1524" layer="91"/>
 <label x="190.5" y="149.86" size="0.762" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<label x="142.24" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="142.24" y1="63.5" x2="144.78" y2="63.5" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="PA1" class="0">
-<segment>
-<wire x1="96.52" y1="121.92" x2="104.14" y2="121.92" width="0.1524" layer="91"/>
-<label x="96.52" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
 <segment>
 <pinref part="LEFT" gate="1" pin="12"/>
 <wire x1="195.58" y1="144.78" x2="190.5" y2="144.78" width="0.1524" layer="91"/>
 <label x="190.5" y="144.78" size="0.762" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<label x="142.24" y="58.42" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="142.24" y1="58.42" x2="144.78" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PA2" class="0">
@@ -5870,35 +5858,47 @@ W = angled&lt;p&gt;
 </net>
 <net name="PE12" class="0">
 <segment>
-<label x="48.26" y="116.84" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="48.26" y1="116.84" x2="53.34" y2="116.84" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="RIGHT" gate="1" pin="6"/>
 <wire x1="241.3" y1="137.16" x2="248.92" y2="137.16" width="0.1524" layer="91"/>
 <label x="248.92" y="137.16" size="0.762" layer="95" xref="yes"/>
 </segment>
+<segment>
+<label x="48.26" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="48.26" y1="121.92" x2="53.34" y2="121.92" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="PE14" class="0">
-<segment>
-<label x="48.26" y="111.76" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="48.26" y1="111.76" x2="53.34" y2="111.76" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="RIGHT" gate="1" pin="4"/>
 <wire x1="241.3" y1="132.08" x2="248.92" y2="132.08" width="0.1524" layer="91"/>
 <label x="248.92" y="132.08" size="0.762" layer="95" xref="yes"/>
 </segment>
+<segment>
+<wire x1="96.52" y1="121.92" x2="104.14" y2="121.92" width="0.1524" layer="91"/>
+<label x="96.52" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="PE11" class="0">
-<segment>
-<label x="48.26" y="121.92" size="1.778" layer="95" rot="R180" xref="yes"/>
-<wire x1="48.26" y1="121.92" x2="53.34" y2="121.92" width="0.1524" layer="91"/>
-</segment>
 <segment>
 <pinref part="RIGHT" gate="1" pin="8"/>
 <wire x1="241.3" y1="142.24" x2="248.92" y2="142.24" width="0.1524" layer="91"/>
 <label x="248.92" y="142.24" size="0.762" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="96.52" y1="127" x2="104.14" y2="127" width="0.1524" layer="91"/>
+<label x="96.52" y="127" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="PA6" class="0">
+<segment>
+<label x="185.42" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="185.42" y1="63.5" x2="190.5" y2="63.5" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PA7" class="0">
+<segment>
+<label x="185.42" y="58.42" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="185.42" y1="58.42" x2="190.5" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
