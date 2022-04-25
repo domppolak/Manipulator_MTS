@@ -1,0 +1,100 @@
+Configuration	Manipulator_MTS_STM
+STM32CubeMX 	6.5.0
+Date	04/25/2022
+MCU	STM32L476VGTx
+
+
+
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C1	I2C	I2C1_SCL	PB6
+I2C1	I2C	I2C1_SDA	PB7
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM1	PWM Generation CH2	TIM1_CH2	PE11
+TIM1	PWM Generation CH4	TIM1_CH4	PE14
+TIM2	Encoder Mode	TIM2_CH1	PA0
+TIM2	Encoder Mode	TIM2_CH2	PA1
+TIM3	Encoder Mode	TIM3_CH1	PA6
+TIM3	Encoder Mode	TIM3_CH2	PA7
+TIM15	PWM Generation CH1	TIM15_CH1	PA2
+USART2	Asynchronous	USART2_RX	PA3
+USART2	Asynchronous	USART2_TX	PD5
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+18	PC3*	LCD_VLCD	VLCD
+23	PA0	TIM2_CH1	ENC2_A2
+24	PA1	TIM2_CH2	ENC2_B2
+25	PA2	TIM15_CH1	SERVO_PWM
+26	PA3	USART2_RX	
+31	PA6	TIM3_CH1	ENC1_A1
+32	PA7	TIM3_CH2	ENC1_B1
+41	PE10	GPIO_Output	AIN2
+42	PE11	TIM1_CH2	PWMA
+43	PE12	GPIO_Output	AIN1
+44	PE13	GPIO_Output	BIN2
+45	PE14	TIM1_CH4	PWMB
+46	PE15	GPIO_Output	BIN1
+86	PD5	USART2_TX	
+92	PB6	I2C1_SCL	I2C1_SCL [SSM-104-L-DH_SCL]
+93	PB7	I2C1_SDA	I2C1_SDA [SSM-104-L-DH_SDA]
+PERIPHERALS	MODES	FUNCTIONS	PINS
+I2C1	I2C	I2C1_SCL	PB6
+I2C1	I2C	I2C1_SDA	PB7
+SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
+TIM1	PWM Generation CH2	TIM1_CH2	PE11
+TIM1	PWM Generation CH4	TIM1_CH4	PE14
+TIM2	Encoder Mode	TIM2_CH1	PA0
+TIM2	Encoder Mode	TIM2_CH2	PA1
+TIM3	Encoder Mode	TIM3_CH1	PA6
+TIM3	Encoder Mode	TIM3_CH2	PA7
+TIM15	PWM Generation CH1	TIM15_CH1	PA2
+USART2	Asynchronous	USART2_RX	PA3
+USART2	Asynchronous	USART2_TX	PD5
+
+
+
+Pin Nb	PINs	FUNCTIONs	LABELs
+18	PC3*	LCD_VLCD	VLCD
+23	PA0	TIM2_CH1	ENC2_A2
+24	PA1	TIM2_CH2	ENC2_B2
+25	PA2	TIM15_CH1	SERVO_PWM
+26	PA3	USART2_RX	
+31	PA6	TIM3_CH1	ENC1_A1
+32	PA7	TIM3_CH2	ENC1_B1
+41	PE10	GPIO_Output	AIN2
+42	PE11	TIM1_CH2	PWMA
+43	PE12	GPIO_Output	AIN1
+44	PE13	GPIO_Output	BIN2
+45	PE14	TIM1_CH4	PWMB
+46	PE15	GPIO_Output	BIN1
+86	PD5	USART2_TX	
+92	PB6	I2C1_SCL	I2C1_SCL [SSM-104-L-DH_SCL]
+93	PB7	I2C1_SDA	I2C1_SDA [SSM-104-L-DH_SDA]
+
+
+
+SOFTWARE PROJECT
+
+Project Settings : 
+Project Name : Manipulator_MTS_STM
+Project Folder : C:\Users\bttle\OneDrive\Pulpit\Manipulator_MTS\Kod programu
+Toolchain / IDE : STM32CubeIDE
+Firmware Package Name and Version : STM32Cube FW_L4 V1.17.1
+
+
+Code Generation Settings : 
+STM32Cube MCU packages and embedded software packs : Copy only the necessary library files
+Generate peripheral initialization as a pair of '.c/.h' files per peripheral : Yes
+Backup previously generated files when re-generating : No
+Delete previously generated files when not re-generated : Yes
+Set all free pins as analog (to optimize the power consumption) : No
+
+
+Toolchains Settings : 
+Compiler Optimizations : 
+
+
+
+
+

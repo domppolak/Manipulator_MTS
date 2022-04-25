@@ -65,10 +65,6 @@ void Error_Handler(void);
 #define ENC2_B2_GPIO_Port GPIOA
 #define SERVO_PWM_Pin GPIO_PIN_2
 #define SERVO_PWM_GPIO_Port GPIOA
-#define ENC1_A1_Pin GPIO_PIN_6
-#define ENC1_A1_GPIO_Port GPIOA
-#define ENC1_B1_Pin GPIO_PIN_7
-#define ENC1_B1_GPIO_Port GPIOA
 #define AIN2_Pin GPIO_PIN_10
 #define AIN2_GPIO_Port GPIOE
 #define PWMA_Pin GPIO_PIN_11
@@ -81,10 +77,10 @@ void Error_Handler(void);
 #define PWMB_GPIO_Port GPIOE
 #define BIN1_Pin GPIO_PIN_15
 #define BIN1_GPIO_Port GPIOE
-#define I2C1_SCL_Pin GPIO_PIN_6
-#define I2C1_SCL_GPIO_Port GPIOB
-#define I2C1_SDA_Pin GPIO_PIN_7
-#define I2C1_SDA_GPIO_Port GPIOB
+#define ENC1_B1_Pin GPIO_PIN_6
+#define ENC1_B1_GPIO_Port GPIOB
+#define ENC1_A1_Pin GPIO_PIN_7
+#define ENC1_A1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
