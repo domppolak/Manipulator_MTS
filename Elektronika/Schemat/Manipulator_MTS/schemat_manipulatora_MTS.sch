@@ -95,8 +95,6 @@
 <wire x1="-11.5" y1="-26.5" x2="11.5" y2="-26.5" width="0.127" layer="21"/>
 <wire x1="-11.5" y1="26.5" x2="-11.5" y2="-26.5" width="0.127" layer="21"/>
 <wire x1="-11.5" y1="26.5" x2="11.5" y2="26.5" width="0.127" layer="21"/>
-<text x="-4" y="-24" size="2.54" layer="21">+ IN -</text>
-<text x="-6" y="22" size="2.54" layer="21">+ OUT -</text>
 <hole x="-10" y="-17.5" drill="3.5"/>
 <hole x="10" y="17.5" drill="3.5"/>
 <text x="-9" y="1" size="1.9304" layer="21">BUCK MODULE</text>
@@ -109,6 +107,8 @@
 <vertex x="13.97" y="-29.21"/>
 <vertex x="-13.97" y="-29.21"/>
 </polygon>
+<text x="-3.81" y="22.86" size="1.778" layer="21">+OUT-</text>
+<text x="-2.54" y="-25.4" size="1.778" layer="21">+IN-</text>
 </package>
 </packages>
 <symbols>
@@ -160,10 +160,10 @@
 <devices>
 <device name="" package="BUCK_MODULE">
 <connects>
-<connect gate="PRZETWORNICA-STEP-DOWN" pin="IN+" pad="1"/>
-<connect gate="PRZETWORNICA-STEP-DOWN" pin="IN-" pad="2"/>
-<connect gate="PRZETWORNICA-STEP-DOWN" pin="OUT+" pad="3"/>
-<connect gate="PRZETWORNICA-STEP-DOWN" pin="OUT-" pad="4"/>
+<connect gate="PRZETWORNICA-STEP-DOWN" pin="IN+" pad="2"/>
+<connect gate="PRZETWORNICA-STEP-DOWN" pin="IN-" pad="1"/>
+<connect gate="PRZETWORNICA-STEP-DOWN" pin="OUT+" pad="4"/>
+<connect gate="PRZETWORNICA-STEP-DOWN" pin="OUT-" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -5134,67 +5134,50 @@ W = angled&lt;p&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="XT60-M">
+<library name="amy_library">
 <packages>
-<package name="AMASS_XT60-M">
-<wire x1="-4.75" y1="4.05" x2="7.75" y2="4.05" width="0.127" layer="51"/>
-<wire x1="7.75" y1="4.05" x2="7.75" y2="-4.05" width="0.127" layer="51"/>
-<wire x1="7.75" y1="-4.05" x2="-4.75" y2="-4.05" width="0.127" layer="51"/>
-<wire x1="-4.75" y1="4.05" x2="7.75" y2="4.05" width="0.127" layer="21"/>
-<wire x1="7.75" y1="4.05" x2="7.75" y2="-4.05" width="0.127" layer="21"/>
-<wire x1="7.75" y1="-4.05" x2="-4.75" y2="-4.05" width="0.127" layer="21"/>
-<wire x1="-8" y1="-4.3" x2="-8" y2="4.3" width="0.05" layer="39"/>
-<wire x1="-8" y1="4.3" x2="8" y2="4.3" width="0.05" layer="39"/>
-<wire x1="8" y1="4.3" x2="8" y2="-4.3" width="0.05" layer="39"/>
-<wire x1="8" y1="-4.3" x2="-8" y2="-4.3" width="0.05" layer="39"/>
-<text x="-8.10561875" y="4.40305" size="1.27088125" layer="25">&gt;NAME</text>
-<text x="-8.105540625" y="-5.60383125" size="1.27086875" layer="27">&gt;VALUE</text>
-<wire x1="-7.75" y1="-1.4" x2="-7.75" y2="1.4" width="0.127" layer="51"/>
-<wire x1="-4.75" y1="4.05" x2="-7.75" y2="1.4" width="0.127" layer="51"/>
-<wire x1="-4.75" y1="-4.05" x2="-7.75" y2="-1.4" width="0.127" layer="51"/>
-<wire x1="-7.75" y1="-1.4" x2="-7.75" y2="1.4" width="0.127" layer="21"/>
-<wire x1="-4.75" y1="4.05" x2="-5.88" y2="3.05" width="0.127" layer="21"/>
-<wire x1="-7.75" y1="1.4" x2="-6.73" y2="2.3" width="0.127" layer="21"/>
-<wire x1="-4.75" y1="-4.05" x2="-5.88" y2="-3.05" width="0.127" layer="21"/>
-<wire x1="-7.75" y1="-1.4" x2="-6.73" y2="-2.3" width="0.127" layer="21"/>
-<circle x="-8.4" y="-0.1" radius="0.15" width="0.3" layer="21"/>
-<pad name="1" x="-3.6" y="0" drill="4.5" shape="square"/>
-<pad name="2" x="3.6" y="0" drill="4.5"/>
+<package name="XT90I-M">
+<pad name="2" x="5.5" y="0" drill="5.5"/>
+<pad name="1" x="-5.5" y="0" drill="5.5" shape="square"/>
+<wire x1="-10.45" y1="4.6" x2="9.65" y2="4.6" width="0.1524" layer="39"/>
+<wire x1="9.65" y1="4.6" x2="9.65" y2="-4.6" width="0.1524" layer="39"/>
+<wire x1="9.65" y1="-4.6" x2="-10.45" y2="-4.6" width="0.1524" layer="39"/>
+<wire x1="-10.45" y1="-4.6" x2="-10.45" y2="4.6" width="0.1524" layer="39"/>
+<wire x1="9.4" y1="4.35" x2="9.4" y2="-4.35" width="0.1524" layer="21"/>
+<wire x1="9.4" y1="4.35" x2="-7.6" y2="4.35" width="0.1524" layer="21"/>
+<wire x1="-7.6" y1="4.35" x2="-10.2" y2="2" width="0.1524" layer="21"/>
+<wire x1="-10.2" y1="2" x2="-10.2" y2="-2" width="0.1524" layer="21"/>
+<wire x1="-10.2" y1="-2" x2="-7.6" y2="-4.35" width="0.1524" layer="21"/>
+<wire x1="-7.6" y1="-4.35" x2="9.4" y2="-4.35" width="0.1524" layer="21"/>
+<text x="-5.08" y="5.08" size="1.778" layer="25">&gt;NAME</text>
+<text x="-5.08" y="-7.62" size="1.778" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
-<symbol name="XT60-M">
-<wire x1="-2.54" y1="-5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="5.08" x2="2.54" y2="5.08" width="0.254" layer="94"/>
-<wire x1="2.54" y1="5.08" x2="2.54" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-5.08" x2="-2.54" y2="-5.08" width="0.254" layer="94"/>
-<text x="-2.54485" y="5.725909375" size="1.017940625" layer="95">&gt;NAME</text>
-<text x="-2.79893125" y="-6.361209375" size="1.017790625" layer="96">&gt;VALUE</text>
-<pin name="-" x="-7.62" y="2.54" length="middle" direction="pas"/>
-<pin name="+" x="-7.62" y="-2.54" length="middle" direction="pas"/>
+<symbol name="XT90I-M">
+<wire x1="-2.54" y1="5.08" x2="-2.54" y2="-5.08" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="-5.08" x2="2.54" y2="-5.08" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-5.08" x2="2.54" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="-2.54" y2="5.08" width="0.1524" layer="94"/>
+<pin name="+" x="7.62" y="2.54" length="middle" rot="R180"/>
+<pin name="-" x="7.62" y="-2.54" length="middle" rot="R180"/>
+<text x="-5.08" y="7.62" size="1.778" layer="95">&gt;NAME</text>
+<text x="-5.08" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="XT60-M" prefix="J">
-<description>DC supply; XT60; male; PIN:2; for cable; soldered; 60A; 500V &lt;a href="https://pricing.snapeda.com/parts/XT60-M/AMASS/view-part?ref=eda"&gt;Check availability&lt;/a&gt;</description>
+<deviceset name="XT90I-M" prefix="I">
 <gates>
-<gate name="G$1" symbol="XT60-M" x="0" y="0"/>
+<gate name="TX90I-M" symbol="XT90I-M" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="AMASS_XT60-M">
+<device name="" package="XT90I-M">
 <connects>
-<connect gate="G$1" pin="+" pad="2"/>
-<connect gate="G$1" pin="-" pad="1"/>
+<connect gate="TX90I-M" pin="+" pad="2"/>
+<connect gate="TX90I-M" pin="-" pad="1"/>
 </connects>
 <technologies>
-<technology name="">
-<attribute name="AVAILABILITY" value="Not in stock"/>
-<attribute name="DESCRIPTION" value=" Plug; DC supply; XT60; male; PIN: 2; for cable; soldered; 30A; 500V "/>
-<attribute name="MF" value="AMASS"/>
-<attribute name="MP" value="XT60-M"/>
-<attribute name="PACKAGE" value="Package "/>
-<attribute name="PRICE" value="None"/>
-</technology>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
@@ -5247,7 +5230,7 @@ W = angled&lt;p&gt;
 <part name="MOTOR1" library="con-molex" library_urn="urn:adsk.eagle:library:165" deviceset="22-23-2061" device="" package3d_urn="urn:adsk.eagle:package:8078637/1"/>
 <part name="MOTOR2" library="con-molex" library_urn="urn:adsk.eagle:library:165" deviceset="22-23-2061" device="" package3d_urn="urn:adsk.eagle:package:8078637/1"/>
 <part name="SERVO" library="con-molex" library_urn="urn:adsk.eagle:library:165" deviceset="22-23-2031" device="" package3d_urn="urn:adsk.eagle:package:8078634/1"/>
-<part name="J1" library="XT60-M" deviceset="XT60-M" device=""/>
+<part name="I1" library="amy_library" deviceset="XT90I-M" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5313,24 +5296,24 @@ W = angled&lt;p&gt;
 <instance part="MOTOR1" gate="-6" x="165.1" y="30.48" smashed="yes">
 <attribute name="NAME" x="167.64" y="29.718" size="1.524" layer="95"/>
 </instance>
-<instance part="MOTOR2" gate="-1" x="200.66" y="43.18" smashed="yes">
-<attribute name="NAME" x="203.2" y="42.418" size="1.524" layer="95"/>
-<attribute name="VALUE" x="199.898" y="44.577" size="1.778" layer="96"/>
+<instance part="MOTOR2" gate="-1" x="215.9" y="43.18" smashed="yes">
+<attribute name="NAME" x="218.44" y="42.418" size="1.524" layer="95"/>
+<attribute name="VALUE" x="215.138" y="44.577" size="1.778" layer="96"/>
 </instance>
-<instance part="MOTOR2" gate="-2" x="200.66" y="40.64" smashed="yes">
-<attribute name="NAME" x="203.2" y="39.878" size="1.524" layer="95"/>
+<instance part="MOTOR2" gate="-2" x="215.9" y="40.64" smashed="yes">
+<attribute name="NAME" x="218.44" y="39.878" size="1.524" layer="95"/>
 </instance>
-<instance part="MOTOR2" gate="-3" x="200.66" y="38.1" smashed="yes">
-<attribute name="NAME" x="203.2" y="37.338" size="1.524" layer="95"/>
+<instance part="MOTOR2" gate="-3" x="215.9" y="38.1" smashed="yes">
+<attribute name="NAME" x="218.44" y="37.338" size="1.524" layer="95"/>
 </instance>
-<instance part="MOTOR2" gate="-4" x="200.66" y="35.56" smashed="yes">
-<attribute name="NAME" x="203.2" y="34.798" size="1.524" layer="95"/>
+<instance part="MOTOR2" gate="-4" x="215.9" y="35.56" smashed="yes">
+<attribute name="NAME" x="218.44" y="34.798" size="1.524" layer="95"/>
 </instance>
-<instance part="MOTOR2" gate="-5" x="200.66" y="33.02" smashed="yes">
-<attribute name="NAME" x="203.2" y="32.258" size="1.524" layer="95"/>
+<instance part="MOTOR2" gate="-5" x="215.9" y="33.02" smashed="yes">
+<attribute name="NAME" x="218.44" y="32.258" size="1.524" layer="95"/>
 </instance>
-<instance part="MOTOR2" gate="-6" x="200.66" y="30.48" smashed="yes">
-<attribute name="NAME" x="203.2" y="29.718" size="1.524" layer="95"/>
+<instance part="MOTOR2" gate="-6" x="215.9" y="30.48" smashed="yes">
+<attribute name="NAME" x="218.44" y="29.718" size="1.524" layer="95"/>
 </instance>
 <instance part="SERVO" gate="-1" x="236.22" y="55.88" smashed="yes">
 <attribute name="NAME" x="238.76" y="55.118" size="1.524" layer="95"/>
@@ -5342,9 +5325,9 @@ W = angled&lt;p&gt;
 <instance part="SERVO" gate="-3" x="236.22" y="50.8" smashed="yes">
 <attribute name="NAME" x="238.76" y="50.038" size="1.524" layer="95"/>
 </instance>
-<instance part="J1" gate="G$1" x="10.16" y="170.18" smashed="yes" rot="R180">
-<attribute name="NAME" x="12.70485" y="164.454090625" size="1.017940625" layer="95" rot="R180"/>
-<attribute name="VALUE" x="12.95893125" y="176.541209375" size="1.017790625" layer="96" rot="R180"/>
+<instance part="I1" gate="TX90I-M" x="12.7" y="170.18" smashed="yes">
+<attribute name="NAME" x="7.62" y="177.8" size="1.778" layer="95"/>
+<attribute name="VALUE" x="7.62" y="162.56" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -5444,8 +5427,8 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-5" pin="S"/>
-<wire x1="198.12" y1="33.02" x2="193.04" y2="33.02" width="0.1524" layer="91"/>
-<label x="193.04" y="33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="33.02" x2="208.28" y2="33.02" width="0.1524" layer="91"/>
+<label x="208.28" y="33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="SERVO" gate="-3" pin="S"/>
@@ -5485,8 +5468,8 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-1" pin="S"/>
-<wire x1="198.12" y1="43.18" x2="193.04" y2="43.18" width="0.1524" layer="91"/>
-<label x="193.04" y="43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="43.18" x2="208.28" y2="43.18" width="0.1524" layer="91"/>
+<label x="208.28" y="43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="MOTOR_2_2" class="0">
@@ -5497,8 +5480,8 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-2" pin="S"/>
-<wire x1="198.12" y1="40.64" x2="193.04" y2="40.64" width="0.1524" layer="91"/>
-<label x="193.04" y="40.64" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="40.64" x2="208.28" y2="40.64" width="0.1524" layer="91"/>
+<label x="208.28" y="40.64" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="PWMA" class="0">
@@ -5581,8 +5564,8 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-4" pin="S"/>
-<wire x1="198.12" y1="35.56" x2="193.04" y2="35.56" width="0.1524" layer="91"/>
-<label x="193.04" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="35.56" x2="208.28" y2="35.56" width="0.1524" layer="91"/>
+<label x="208.28" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ENC2_A2" class="0">
@@ -5593,32 +5576,32 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-3" pin="S"/>
-<wire x1="198.12" y1="38.1" x2="193.04" y2="38.1" width="0.1524" layer="91"/>
-<label x="193.04" y="38.1" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="38.1" x2="208.28" y2="38.1" width="0.1524" layer="91"/>
+<label x="208.28" y="38.1" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ENC1_B1" class="0">
-<segment>
-<pinref part="LEFT" gate="1" pin="15"/>
-<wire x1="195.58" y1="137.16" x2="190.5" y2="137.16" width="0.1524" layer="91"/>
-<label x="190.5" y="137.16" size="0.762" layer="95" rot="R180" xref="yes"/>
-</segment>
 <segment>
 <pinref part="MOTOR1" gate="-4" pin="S"/>
 <wire x1="162.56" y1="35.56" x2="157.48" y2="35.56" width="0.1524" layer="91"/>
 <label x="157.48" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
-</net>
-<net name="ENC1_A1" class="0">
 <segment>
 <pinref part="LEFT" gate="1" pin="16"/>
 <wire x1="195.58" y1="134.62" x2="190.5" y2="134.62" width="0.1524" layer="91"/>
 <label x="190.5" y="134.62" size="0.762" layer="95" rot="R180" xref="yes"/>
 </segment>
+</net>
+<net name="ENC1_A1" class="0">
 <segment>
 <pinref part="MOTOR1" gate="-3" pin="S"/>
 <wire x1="162.56" y1="38.1" x2="157.48" y2="38.1" width="0.1524" layer="91"/>
 <label x="157.48" y="38.1" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="LEFT" gate="1" pin="15"/>
+<wire x1="195.58" y1="137.16" x2="190.5" y2="137.16" width="0.1524" layer="91"/>
+<label x="190.5" y="137.16" size="0.762" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SERVO_PWM" class="0">
@@ -5675,8 +5658,13 @@ W = angled&lt;p&gt;
 </segment>
 <segment>
 <pinref part="MOTOR2" gate="-6" pin="S"/>
-<wire x1="198.12" y1="30.48" x2="193.04" y2="30.48" width="0.1524" layer="91"/>
-<label x="193.04" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="213.36" y1="30.48" x2="208.28" y2="30.48" width="0.1524" layer="91"/>
+<label x="208.28" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="RIGHT" gate="1" pin="18"/>
+<wire x1="241.3" y1="167.64" x2="248.92" y2="167.64" width="0.1524" layer="91"/>
+<label x="248.92" y="167.64" size="0.762" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="+3.3V" class="0">
@@ -5690,8 +5678,6 @@ W = angled&lt;p&gt;
 <wire x1="93.98" y1="78.74" x2="111.76" y2="78.74" width="0.1524" layer="91"/>
 <label x="111.76" y="78.74" size="1.778" layer="95" xref="yes"/>
 </segment>
-</net>
-<net name="3V3" class="0">
 <segment>
 <pinref part="LEFT" gate="1" pin="1"/>
 <wire x1="195.58" y1="172.72" x2="190.5" y2="172.72" width="0.1524" layer="91"/>
@@ -5761,13 +5747,6 @@ W = angled&lt;p&gt;
 <label x="248.92" y="172.72" size="0.762" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="5V_I" class="0">
-<segment>
-<pinref part="RIGHT" gate="1" pin="18"/>
-<wire x1="241.3" y1="167.64" x2="248.92" y2="167.64" width="0.1524" layer="91"/>
-<label x="248.92" y="167.64" size="0.762" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="5V" class="0">
 <segment>
 <pinref part="RIGHT" gate="1" pin="16"/>
@@ -5826,24 +5805,21 @@ W = angled&lt;p&gt;
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="J1" gate="G$1" pin="+"/>
 <pinref part="U1" gate="PRZETWORNICA-STEP-DOWN" pin="IN+"/>
-<wire x1="17.78" y1="172.72" x2="22.86" y2="172.72" width="0.1524" layer="91"/>
+<pinref part="I1" gate="TX90I-M" pin="+"/>
+<wire x1="20.32" y1="172.72" x2="22.86" y2="172.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="J1" gate="G$1" pin="-"/>
 <pinref part="U1" gate="PRZETWORNICA-STEP-DOWN" pin="IN-"/>
-<wire x1="17.78" y1="167.64" x2="22.86" y2="167.64" width="0.1524" layer="91"/>
+<pinref part="I1" gate="TX90I-M" pin="-"/>
+<wire x1="20.32" y1="167.64" x2="22.86" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="108,1,86.36,157.48,GND,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 <compatibility>

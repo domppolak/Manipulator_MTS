@@ -1543,8 +1543,8 @@ W = angled&lt;p&gt;
 <wire x1="-10.2" y1="2" x2="-10.2" y2="-2" width="0.1524" layer="21"/>
 <wire x1="-10.2" y1="-2" x2="-7.6" y2="-4.35" width="0.1524" layer="21"/>
 <wire x1="-7.6" y1="-4.35" x2="9.4" y2="-4.35" width="0.1524" layer="21"/>
-<text x="-5.08" y="5.08" size="1.778" layer="25">&gt;NAME</text>
-<text x="-5.08" y="-7.62" size="1.778" layer="27">&gt;VALUE</text>
+<text x="-10.5" y="5.5" size="1.778" layer="25">&gt;NAMES</text>
+<text x="-10.5" y="-7" size="1.778" layer="27">&gt;VALUES</text>
 </package>
 </packages>
 </library>
@@ -1864,7 +1864,7 @@ design rules under a new name.</description>
 <via x="3.5" y="57" extent="1-16" drill="1" diameter="2"/>
 <via x="7.5" y="91" extent="1-16" drill="1" diameter="2"/>
 <via x="3.5" y="38" extent="1-16" drill="1" diameter="2"/>
-<via x="16.5" y="23" extent="1-16" drill="1" diameter="2"/>
+<via x="4.5" y="22" extent="1-16" drill="1" diameter="2"/>
 <via x="57.5" y="32" extent="1-16" drill="1" diameter="2"/>
 <via x="35" y="87.5" extent="1-16" drill="1" diameter="2"/>
 <via x="32" y="96" extent="1-16" drill="1" diameter="2"/>
@@ -2213,16 +2213,15 @@ design rules under a new name.</description>
 </signal>
 <signal name="N$1">
 <contactref element="U1" pad="2"/>
+<wire x1="9.05" y1="78.34" x2="9.05" y2="87.55" width="1.5" layer="16"/>
 <contactref element="I1" pad="2"/>
-<wire x1="9.05" y1="88.05" x2="13" y2="92" width="1.5" layer="16"/>
-<wire x1="9.05" y1="78.34" x2="9.05" y2="88.05" width="1.5" layer="16"/>
+<wire x1="13" y1="92" x2="9.05" y2="78.34" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="U1" pad="1"/>
-<wire x1="29.05" y1="78.34" x2="29.05" y2="88.45" width="1.5" layer="16"/>
+<wire x1="29.05" y1="88.45" x2="29.05" y2="78.34" width="1.5" layer="16"/>
 <contactref element="I1" pad="1"/>
-<wire x1="29.05" y1="88.45" x2="25.5" y2="92" width="1.5" layer="16"/>
-<wire x1="25.5" y1="92" x2="24" y2="92" width="1.5" layer="16"/>
+<wire x1="24" y1="92" x2="29.05" y2="78.34" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
