@@ -1,0 +1,3 @@
+../Core/Src/frame.c:12:6:frame_recv_char	16	static
+../Core/Src/frame.c:16:6:create_frame	16	static
+../Core/Src/frame.c:20:6:frame_send_data	16	static

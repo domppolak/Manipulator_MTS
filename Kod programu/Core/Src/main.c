@@ -18,9 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+#include <stdio.h>
+#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -50,6 +53,8 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+static char Data[15];
+
 
 /* USER CODE END PFP */
 
@@ -89,10 +94,11 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM15_Init();
-  MX_USART2_UART_Init();
+  MX_DMA_Init();
   MX_TIM4_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  sprintf(Data, "123456789012\n\r");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -100,7 +106,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  //HAL_UART_Transmit_DMA(&huart2, (uint8_t *)Data, strlen(Data));
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
