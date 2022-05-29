@@ -1,0 +1,53 @@
+!SESSION 2022-05-27 14:21:04.316 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pl_PL
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-05-27 14:21:54.041
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-05-27 14:21:54.392
+!MESSAGE Log4j initialized with config file /media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-05-27 14:22:07.327
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-05-27 14:24:22.905
+!MESSAGE Indexed 'Kod programu' (30 sources, 115 headers) in 15,9 sec: 11 322 declarations; 67 586 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0,22%)
+!SESSION 2022-05-29 20:38:58.232 -----------------------------------------------
+eclipse.buildId=Version 1.9.0
+java.version=11.0.11
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=pl_PL
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-05-29 20:39:24.911
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-05-29 20:39:25.327
+!MESSAGE Log4j initialized with config file /media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-05-29 20:39:48.821
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 77 2022-05-29 21:27:23.252
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-05-29 21:27:23.252
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-05-29 21:27:23.252
+!MESSAGE /media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/Kod programu overlaps the location of another project: 'Kod programu'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2022-05-29 21:27:23.257
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2022-05-29 21:37:03.383
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-05-29 21:37:03.383
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-05-29 21:37:03.383
+!MESSAGE /media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/Kod programu overlaps the location of another project: 'Kod programu'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2022-05-29 21:37:03.386
+!MESSAGE Project is null

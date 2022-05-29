@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Manipulator_MTS_STM
+BUILD_ARTIFACT_NAME := Kod programu
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Manipulator_MTS_STM.elf \
+Kod\ programu.elf \
 
 MAP_FILES += \
-Manipulator_MTS_STM.map \
+Kod\ programu.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Manipulator_MTS_STM.list \
+Kod\ programu.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Manipulator_MTS_STM.elf secondary-outputs
+main-build: Kod\ programu.elf secondary-outputs
 
 # Tool invocations
-Manipulator_MTS_STM.elf Manipulator_MTS_STM.map: $(OBJS) $(USER_OBJS) C:\Users\bttle\OneDrive\Pulpit\Manipulator_MTS\Kod\ programu\STM32L476VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Manipulator_MTS_STM.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\bttle\OneDrive\Pulpit\Manipulator_MTS\Kod programu\STM32L476VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Manipulator_MTS_STM.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Kod\ programu.elf Kod\ programu.map: $(OBJS) $(USER_OBJS) /media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/Kod\ programu/STM32L476VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Kod programu.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/media/sf_D_DRIVE/Studia/6semestr/sr/Manipulator_MTS/Kod programu/STM32L476VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Kod programu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Manipulator_MTS_STM.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Manipulator_MTS_STM.list"
+Kod\ programu.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Kod programu.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Manipulator_MTS_STM.elf Manipulator_MTS_STM.list Manipulator_MTS_STM.map default.size.stdout
+	-$(RM) Kod\ programu.elf Kod\ programu.list Kod\ programu.map Kod\\ programu.elf default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
