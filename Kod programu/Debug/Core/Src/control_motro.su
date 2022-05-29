@@ -1,0 +1,11 @@
+../Core/Src/control_motro.c:11:6:servo_init	4	static
+../Core/Src/control_motro.c:16:6:servo_setAngle	16	static
+../Core/Src/control_motro.c:21:5:servo_setDirection	16	static
+../Core/Src/control_motro.c:27:6:motorA_init	8	static
+../Core/Src/control_motro.c:35:5:motorA_setDirection	16	static
+../Core/Src/control_motro.c:52:6:motorA_setSpeed	16	static
+../Core/Src/control_motro.c:57:6:motorA_stop	8	static
+../Core/Src/control_motro.c:64:6:motorB_init	8	static
+../Core/Src/control_motro.c:72:5:motorB_setDirection	16	static
+../Core/Src/control_motro.c:89:6:motorB_setSpeed	16	static
+../Core/Src/control_motro.c:94:6:motorB_stop	8	static
