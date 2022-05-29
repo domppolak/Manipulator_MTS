@@ -3,21 +3,23 @@
  *
  */
 
+#include "pid.h"
+
+#define ERR_TOTAL_MAX 255
 
 void pid_init(PidStruct *pid, float kp, float ki, float kd, int limit)
 {
-	pid->error = 0;
+	pid->previous_error = 0;
 	pid->total_error = 0;
 
 	pid->kp = kp;
 	pid->ki = ki;
 	pid->kd = kd;
 
-	pid->limit = limit;
 }
 
 // pid
-// u = kp * e + ki * total_e + kd * (e - e_last);
+// u = kp * e + ki * total_e + kd * (e - e_previous);
 float pid_calculate(PidStruct *pid, int desire, int current)
 {
 	float p,i,d;
@@ -25,15 +27,17 @@ float pid_calculate(PidStruct *pid, int desire, int current)
 	int error = desire - current;
 	pid->total_error += error;
 
-	p = (float)floatpid->kp * error;
-	i = (float)floatpid->ki * pid->total_error;
-	d = (float)floatpid->kd * (error - pid->previous_error);
 
-	if(i >= pid->limit){
-		i = pid->limit;
-	}else if(i <= -pid->limit){
-		i = -pid->limit;
+
+	if(pid->total_error > ERR_TOTAL_MAX){
+		pid->total_error = ERR_TOTAL_MAX;
+	}else if(pid->total_error < -ERR_TOTAL_MAX){
+		pid->total_error = -ERR_TOTAL_MAX;
 	}
+
+	p = (float)(pid->kp * error);
+	i = (float)(pid->ki * pid->total_error);
+	d = (float)(pid->kd * (error - pid->previous_error));
 
 	pid->previous_error = error;
 

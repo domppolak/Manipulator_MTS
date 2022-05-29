@@ -99,37 +99,66 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
  .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
  .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
+ .group         0x0000000000000000        0xc ./Core/Src/control_motro.o
  .text          0x0000000000000000        0x0 ./Core/Src/control_motro.o
  .data          0x0000000000000000        0x0 ./Core/Src/control_motro.o
  .bss           0x0000000000000000        0x0 ./Core/Src/control_motro.o
+ .bss.timA      0x0000000000000000        0x4 ./Core/Src/control_motro.o
+ .bss.timB      0x0000000000000000        0x4 ./Core/Src/control_motro.o
+ .bss.timServo  0x0000000000000000        0x4 ./Core/Src/control_motro.o
+ .bss.tim_channelA
+                0x0000000000000000        0x4 ./Core/Src/control_motro.o
+ .bss.tim_channelB
+                0x0000000000000000        0x4 ./Core/Src/control_motro.o
+ .bss.tim_channelServo
+                0x0000000000000000        0x4 ./Core/Src/control_motro.o
  .text.servo_init
-                0x0000000000000000        0xe ./Core/Src/control_motro.o
- .text.servo_setAngle
-                0x0000000000000000       0x16 ./Core/Src/control_motro.o
- .text.servo_setDirection
-                0x0000000000000000       0x18 ./Core/Src/control_motro.o
+                0x0000000000000000       0xb8 ./Core/Src/control_motro.o
+ .text.servo_move
+                0x0000000000000000       0xf0 ./Core/Src/control_motro.o
  .text.motorA_init
-                0x0000000000000000       0x20 ./Core/Src/control_motro.o
+                0x0000000000000000       0x44 ./Core/Src/control_motro.o
+ .text.motorA_structInit
+                0x0000000000000000       0x30 ./Core/Src/control_motro.o
  .text.motorA_setDirection
                 0x0000000000000000       0x5c ./Core/Src/control_motro.o
  .text.motorA_setSpeed
-                0x0000000000000000       0x16 ./Core/Src/control_motro.o
+                0x0000000000000000      0x160 ./Core/Src/control_motro.o
  .text.motorA_stop
-                0x0000000000000000       0x24 ./Core/Src/control_motro.o
+                0x0000000000000000       0x2c ./Core/Src/control_motro.o
  .text.motorB_init
-                0x0000000000000000       0x20 ./Core/Src/control_motro.o
+                0x0000000000000000       0x44 ./Core/Src/control_motro.o
+ .text.motorB_structInit
+                0x0000000000000000       0x30 ./Core/Src/control_motro.o
  .text.motorB_setDirection
                 0x0000000000000000       0x5c ./Core/Src/control_motro.o
  .text.motorB_setSpeed
-                0x0000000000000000       0x16 ./Core/Src/control_motro.o
+                0x0000000000000000      0x160 ./Core/Src/control_motro.o
  .text.motorB_stop
-                0x0000000000000000       0x24 ./Core/Src/control_motro.o
- .debug_info    0x0000000000000000      0x994 ./Core/Src/control_motro.o
- .debug_abbrev  0x0000000000000000      0x207 ./Core/Src/control_motro.o
+                0x0000000000000000       0x2c ./Core/Src/control_motro.o
+ .debug_info    0x0000000000000000      0xb1d ./Core/Src/control_motro.o
+ .debug_abbrev  0x0000000000000000      0x218 ./Core/Src/control_motro.o
  .debug_aranges
-                0x0000000000000000       0x70 ./Core/Src/control_motro.o
- .debug_ranges  0x0000000000000000       0x60 ./Core/Src/control_motro.o
- .debug_macro   0x0000000000000000      0x1f2 ./Core/Src/control_motro.o
+                0x0000000000000000       0x78 ./Core/Src/control_motro.o
+ .debug_ranges  0x0000000000000000       0x68 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000      0x2c3 ./Core/Src/control_motro.o
  .debug_macro   0x0000000000000000      0xa78 ./Core/Src/control_motro.o
  .debug_macro   0x0000000000000000      0x1ad ./Core/Src/control_motro.o
  .debug_macro   0x0000000000000000       0x2e ./Core/Src/control_motro.o
@@ -170,10 +199,28 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x44 ./Core/Src/control_motro.o
  .debug_macro   0x0000000000000000      0x330 ./Core/Src/control_motro.o
  .debug_macro   0x0000000000000000       0x88 ./Core/Src/control_motro.o
- .debug_line    0x0000000000000000      0x7fb ./Core/Src/control_motro.o
- .debug_str     0x0000000000000000    0xec328 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x40 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x1e ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x52 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x3c ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x34 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x35 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x43 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x34 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x10 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x58 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x71 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x1c ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000      0x12a ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000      0x341 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x16 ./Core/Src/control_motro.o
+ .debug_macro   0x0000000000000000       0x29 ./Core/Src/control_motro.o
+ .debug_line    0x0000000000000000      0xbe9 ./Core/Src/control_motro.o
+ .debug_str     0x0000000000000000    0xef323 ./Core/Src/control_motro.o
  .comment       0x0000000000000000       0x51 ./Core/Src/control_motro.o
- .debug_frame   0x0000000000000000      0x188 ./Core/Src/control_motro.o
+ .debug_frame   0x0000000000000000      0x1bc ./Core/Src/control_motro.o
  .ARM.attributes
                 0x0000000000000000       0x34 ./Core/Src/control_motro.o
  .group         0x0000000000000000        0xc ./Core/Src/dma.o
@@ -563,15 +610,21 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Core/Src/pid.o
  .data          0x0000000000000000        0x0 ./Core/Src/pid.o
  .bss           0x0000000000000000        0x0 ./Core/Src/pid.o
- .debug_info    0x0000000000000000       0x21 ./Core/Src/pid.o
- .debug_abbrev  0x0000000000000000       0x13 ./Core/Src/pid.o
+ .text.pid_init
+                0x0000000000000000       0x40 ./Core/Src/pid.o
+ .text.pid_calculate
+                0x0000000000000000       0xba ./Core/Src/pid.o
+ .debug_info    0x0000000000000000      0x178 ./Core/Src/pid.o
+ .debug_abbrev  0x0000000000000000       0xf2 ./Core/Src/pid.o
  .debug_aranges
-                0x0000000000000000       0x18 ./Core/Src/pid.o
- .debug_macro   0x0000000000000000       0x11 ./Core/Src/pid.o
+                0x0000000000000000       0x28 ./Core/Src/pid.o
+ .debug_ranges  0x0000000000000000       0x18 ./Core/Src/pid.o
+ .debug_macro   0x0000000000000000       0x21 ./Core/Src/pid.o
  .debug_macro   0x0000000000000000      0xa78 ./Core/Src/pid.o
- .debug_line    0x0000000000000000       0x32 ./Core/Src/pid.o
- .debug_str     0x0000000000000000     0x2cdc ./Core/Src/pid.o
+ .debug_line    0x0000000000000000       0xbf ./Core/Src/pid.o
+ .debug_str     0x0000000000000000     0x2d57 ./Core/Src/pid.o
  .comment       0x0000000000000000       0x51 ./Core/Src/pid.o
+ .debug_frame   0x0000000000000000       0x60 ./Core/Src/pid.o
  .ARM.attributes
                 0x0000000000000000       0x34 ./Core/Src/pid.o
  .group         0x0000000000000000        0xc ./Core/Src/stm32l4xx_hal_msp.o

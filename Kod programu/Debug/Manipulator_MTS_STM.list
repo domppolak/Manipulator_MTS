@@ -1862,9 +1862,9 @@ void MX_TIM15_Init(void)
  8000c84:	4b2b      	ldr	r3, [pc, #172]	; (8000d34 <MX_TIM15_Init+0x104>)
  8000c86:	2200      	movs	r2, #0
  8000c88:	615a      	str	r2, [r3, #20]
-  htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
  8000c8a:	4b2a      	ldr	r3, [pc, #168]	; (8000d34 <MX_TIM15_Init+0x104>)
- 8000c8c:	2200      	movs	r2, #0
+ 8000c8c:	2280      	movs	r2, #128	; 0x80
  8000c8e:	619a      	str	r2, [r3, #24]
   if (HAL_TIM_PWM_Init(&htim15) != HAL_OK)
  8000c90:	4828      	ldr	r0, [pc, #160]	; (8000d34 <MX_TIM15_Init+0x104>)
