@@ -28,6 +28,8 @@
 #include <stdio.h>
 #include "pid.h"
 #include "control_motor.h"
+#include "geometrik.h"
+#include "structposition.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,6 +55,7 @@
   int16_t count1, count2;
   long int position1, position2;
   PidStruct *pid1, *pid2;
+  Position Pos;
 
 /* USER CODE END PV */
 
