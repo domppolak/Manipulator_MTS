@@ -25,7 +25,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdio.h>
+#include "pid.h"
+#include "control_motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,19 +47,33 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+  int moveFlag = 0;
+  float u1, u2;
+  int enc_pos1, enc_pos2;
+  int16_t count1, count2;
+  long int position1, position2;
+  PidStruct *pid1, *pid2;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-static char Data[15];
 
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int _write(int file, char *ptr, int len) {
+	HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, 50);
+	return len;
+}
+
+void enc_position2(int16_t *position)
+{
+	position = ((int16_t)(htim4.Instance->CNT))/4;
+}
 
 /* USER CODE END 0 */
 
@@ -97,13 +113,30 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-  sprintf(Data, "123456789012\n\r");
+  HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //q1
+  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL); //q2
+  servo_init(&htim15, TIM_CHANNEL_1);
+  motorA_init(&htim1, TIM_CHANNEL_2);
+  motorB_init(&htim1, TIM_CHANNEL_4);
+  //pid_init(pid1, kp, ki, kd, limit)
+  //pid_init(pid2, kp, ki, kd)
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if(!moveFlag){
+		  enc_pos1 = TIM2->CNT;
+		  enc_pos2 = TIM4->CNT;
+		  u1 = 0;
+		  u2 = 0;
+	  }
+	  if(moveFlag){
+		  u1 = pid_calculate(pid1,enc_pos1+q1,(TIM2->CNT));
+		  u2 = pid_calculate(pid2, enc_pos2+q2, (TIM4->CNT));
+
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

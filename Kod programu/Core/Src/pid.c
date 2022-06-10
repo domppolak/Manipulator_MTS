@@ -7,7 +7,7 @@
 
 #define ERR_TOTAL_MAX 255
 
-void pid_init(PidStruct *pid, float kp, float ki, float kd, int limit)
+void pid_init(PidStruct *pid, float kp, float ki, float kd)
 {
 	pid->previous_error = 0;
 	pid->total_error = 0;

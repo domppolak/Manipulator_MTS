@@ -1,7 +1,7 @@
 "./Core/Src/control_motro.o"
 "./Core/Src/dma.o"
-"./Core/Src/fabrik.o"
 "./Core/Src/frame.o"
+"./Core/Src/geometrik.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"
 "./Core/Src/pid.o"

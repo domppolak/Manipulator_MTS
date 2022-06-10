@@ -14,10 +14,9 @@ typedef struct
 
 	int previous_error;
 	int total_error;
-	int limit; // ograniczenie członu całkującego
 }PidStruct;
 
-void pid_init(PidStruct *pid, float kp, float ki, float kd, int limit);
+void pid_init(PidStruct *pid, float kp, float ki, float kd);
 float pid_calculate(PidStruct *pid, int desire, int current);
 
 #endif /* INC_PID_H_ */

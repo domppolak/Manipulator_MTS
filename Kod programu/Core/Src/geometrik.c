@@ -21,6 +21,9 @@ int main()
     newPositions(q, p, t);
 }
 */
+// float q[3]  aktualna pozycja w przegubach
+// const float t[3] - xyz to co chcemy osiagnac
+
 int newPositions(float q[3], const float t[3])
 {
     q[0] = t[2] - 163; // mm
