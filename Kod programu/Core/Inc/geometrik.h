@@ -10,6 +10,6 @@
 
 #include "structposition.h"
 
-void newPositions(Postion *Pos, const float t[3]);
+void newPositions(Position *Pos, const float t[3]);
 
 #endif /* INC_GEOMETRIK_H_ */

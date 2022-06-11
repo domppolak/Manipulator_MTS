@@ -24,7 +24,7 @@ int main()
 // float q[3]  aktualna pozycja w przegubach
 // const float t[3] - xyz to co chcemy osiagnac
 
-void newPositions(Postion *Pos, const float t[3])
+void newPositions(Position *Pos, const float t[3])
 {
     Pos->q1 = t[2] - 163; // mm
     float x, y, l, m;
@@ -36,8 +36,8 @@ void newPositions(Postion *Pos, const float t[3])
     m = 2 * a2 * a3;
     Pos->q2 = acos(l / m) * 180 / PI; // st.
 
-    l = a3 * sin(q[2]);
-    m = a2 + a3 * cos(q[2]);
+    l = a3 * sin(Pos->q2);
+    m = a2 + a3 * cos(Pos->q2);
     Pos->q3 = (atan(y / x) - atan(l / m)) * 180 / PI; // st.
 
     Pos->x=t[0];

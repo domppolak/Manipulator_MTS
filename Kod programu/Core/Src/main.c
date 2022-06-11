@@ -55,7 +55,8 @@
   int16_t count1, count2;
   long int position1, position2;
   PidStruct *pid1, *pid2;
-  Position Pos;
+  Position Pos={0,0,0,0,0,0};
+  float kp=0.3, ki=1.3, kd=0.5;
 
 /* USER CODE END PV */
 
@@ -121,8 +122,8 @@ int main(void)
   servo_init(&htim15, TIM_CHANNEL_1);
   motorA_init(&htim1, TIM_CHANNEL_2);
   motorB_init(&htim1, TIM_CHANNEL_4);
-  //pid_init(pid1, kp, ki, kd, limit)
-  //pid_init(pid2, kp, ki, kd)
+  pid_init(pid1, kp, ki, kd); // limit jako ostatni argument?
+  pid_init(pid2, kp, ki, kd);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -136,8 +137,8 @@ int main(void)
 		  u2 = 0;
 	  }
 	  if(moveFlag){
-		  u1 = pid_calculate(pid1,enc_pos1+q1,(TIM2->CNT));
-		  u2 = pid_calculate(pid2, enc_pos2+q2, (TIM4->CNT));
+		  u1 = pid_calculate(pid1,enc_pos1+Pos.q1,(TIM2->CNT));
+		  u2 = pid_calculate(pid2, enc_pos2+Pos.q2, (TIM4->CNT));
 
 	  }
     /* USER CODE END WHILE */
