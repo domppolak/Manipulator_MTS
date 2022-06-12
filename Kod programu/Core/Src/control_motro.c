@@ -13,7 +13,15 @@ TIM_HandleTypeDef *timServo;
 uint32_t tim_channelA;
 uint32_t tim_channelB;
 uint32_t tim_channelServo;
+extern TIM_HandleTypeDef htim1;
 
+extern TIM_HandleTypeDef htim2;
+
+extern TIM_HandleTypeDef htim4;
+
+extern TIM_HandleTypeDef htim6;
+
+extern TIM_HandleTypeDef htim15;
 
 // q1
 void motorA_init(TIM_HandleTypeDef *tim, uint32_t tim_channel)
@@ -140,7 +148,7 @@ void servo_init(TIM_HandleTypeDef *tim, uint32_t channel)
 {
 	timServo = tim;
 	tim_channelServo = channel;
-	HAL_TIM_PWM_Start(timServo, tim_channelServo);
+	HAL_TIM_PWM_Start(timServo, TIM_CHANNEL_1);
 
 	__HAL_TIM_SET_COMPARE(timServo, tim_channelServo, 0);
 	HAL_Delay(1000);
@@ -148,7 +156,7 @@ void servo_init(TIM_HandleTypeDef *tim, uint32_t channel)
 
 void servo_move(uint16_t angel, MotorDirection dir)
 {
-	int pwm;
+	uint32_t pwm;
 	if(angel > MAX_ANGEL){
 		angel = MAX_ANGEL;
 	}
@@ -156,12 +164,14 @@ void servo_move(uint16_t angel, MotorDirection dir)
 		angel = MIN_ANGEL;
 	}
 
-	if(dir){
+	pwm = PWM_MIN + (angel*(PWM_MAX - PWM_MIN)/MAX_ANGEL);
+
+	/*if(dir){
 		pwm = PWM_MIN + ((angel - MIN_ANGEL) * STEP) / 1000;
 	}
 	else{
 		pwm = PWM_MAX - ((angel - MIN_ANGEL) * STEP) / 1000;
-	}
+	}*/
 
-	__HAL_TIM_SET_COMPARE(timServo, tim_channelServo, pwm+50);
+	__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, pwm);
 }

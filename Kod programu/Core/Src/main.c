@@ -74,10 +74,10 @@ int _write(int file, char *ptr, int len) {
 	return len;
 }
 
-void enc_position2(int16_t *position)
+/*void enc_position2(int16_t *position)
 {
 	position = ((int16_t)(htim4.Instance->CNT))/4;
-}
+}*/
 
 /* USER CODE END 0 */
 
@@ -117,20 +117,38 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //q1
-  HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL); //q2
-  servo_init(&htim15, TIM_CHANNEL_1);
-  motorA_init(&htim1, TIM_CHANNEL_2);
-  motorB_init(&htim1, TIM_CHANNEL_4);
-  pid_init(pid1, kp, ki, kd); // limit jako ostatni argument?
-  pid_init(pid2, kp, ki, kd);
-  /* USER CODE END 2 */
+  //HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //q1
+  //HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL); //q2
+  //servo_init(&htim15, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // powinien byc 2
+  //motorA_init(&htim1, TIM_CHANNEL_2);
+  //motorB_init(&htim1, TIM_CHANNEL_4);
+  //pid_init(pid1, kp, ki, kd); // limit jako ostatni argument?
+  //pid_init(pid2, kp, ki, kd);
 
+  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000);
+  //servo_move(900,CCW);
+  //motorB_setDirection(CW);
+	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
+  /* USER CODE END 2 */
+  for(int i=0; i<20; i++){
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000-i);
+	  HAL_Delay(10);
+
+  }
+  //motorB_stop();
+  //HAL_Delay(200);
+
+  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
+	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(!moveFlag){
+	  /*if(!moveFlag){
 		  enc_pos1 = TIM2->CNT;
 		  enc_pos2 = TIM4->CNT;
 		  u1 = 0;
@@ -140,7 +158,25 @@ int main(void)
 		  u1 = pid_calculate(pid1,enc_pos1+Pos.q1,(TIM2->CNT));
 		  u2 = pid_calculate(pid2, enc_pos2+Pos.q2, (TIM4->CNT));
 
-	  }
+	  }*/
+	  /*servo_move(0, CW);
+	  HAL_Delay(500);
+	  servo_move(45, CW);
+	  HAL_Delay(500);
+	  servo_move(90, CW);
+	  HAL_Delay(500);*/
+
+
+
+
+	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000);
+	  HAL_Delay(1000);
+	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1500);
+	  HAL_Delay(1000);
+	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 2000);
+	  HAL_Delay(1000);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

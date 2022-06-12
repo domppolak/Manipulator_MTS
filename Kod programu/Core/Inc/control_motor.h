@@ -19,7 +19,8 @@
 #define SECOND_IN_MINUTE				60
 
 #define MIN_ANGEL 0
-#define MAX_ANGEL 900
+#define MAX_ANGEL 90
+#define MAX_SPEED 100
 
 #define PWM_MIN 1000
 #define PWM_MAX 2000
@@ -53,8 +54,8 @@ typedef struct
 void servo_init(TIM_HandleTypeDef *tim, uint32_t channel);
 void servo_move(uint16_t angel, MotorDirection dir);
 
-void servo_setAngle(uint8_t angle);
-int servo_setDirection(MotorDirection dir);
+//void servo_setAngle(uint8_t angle);
+//int servo_setDirection(MotorDirection dir);
 
 // q2
 void motorA_init(TIM_HandleTypeDef *tim, uint32_t tim_channel);
