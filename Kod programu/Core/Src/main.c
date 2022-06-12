@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <stdlib.h>
 #include "pid.h"
 #include "geometrik.h"
 #include "structposition.h"
@@ -81,7 +82,18 @@ int _write(int file, char *ptr, int len) {
 	return len;
 }
 
-void motorA_setDirection(MotorDirection dir){
+void menu()
+{
+	printf("Manipulator MTS\n\r");
+	printf("q1 %d", Pos.q1);
+	printf("q2 %d", Pos.q2);
+	printf("q3 %d", Pos.q3);
+	printf("X %d", Pos.x);
+	printf("Y %d", Pos.y);
+	printf("Z %d", Pos.z);
+}
+
+void motorA_Direction(MotorDirection dir){
 	if(dir == CW){
 		HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
@@ -93,7 +105,7 @@ void motorA_setDirection(MotorDirection dir){
 	}
 }
 
-void motorB_setDirection(MotorDirection dir){
+void motorB_Direction(MotorDirection dir){
 	if(dir == CW){
 		HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
@@ -114,9 +126,9 @@ void motorA_move(int32_t pwm){
 	}
 
 	if(pwm >= 0){
-		motorA_setDirection(CW);
+		motorA_Direction(CW);
 	}else{
-		motorA_setDirection(CWW);
+		motorA_Direction(CCW);
 	}
 
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, abs(pwm));
@@ -131,21 +143,21 @@ void motorB_move(int32_t pwm){
 	}
 
 	if(pwm >= 0){
-		motorB_setDirection(CW);
+		motorB_Direction(CW);
 	}else{
-		motorB_setDirection(CWW);
+		motorB_Direction(CCW);
 	}
 
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, abs(pwm));
 }
 
-void motorA_stop(){
+void motorA_stopMotor(){
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
 	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
 }
 
-void motorB_stop(){
+void motorB_stopMotor(){
 	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0);
 	HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
@@ -153,7 +165,7 @@ void motorB_stop(){
 
 // 45 = 450
 // step ((1000*(PWM_MAX - PWM_MIN) / (MAX_ANGEL - MIN_ANGEL));
-void servo_move(uint16_t angel, MotorDirection dir){
+void servo_moveAngel(uint16_t angel, MotorDirection dir){
 	uint16_t pwm;
 	if(angel > MAX_ANGEL){
 		angel = MAX_ANGEL;
@@ -177,6 +189,7 @@ void servo_move(uint16_t angel, MotorDirection dir){
 	position = ((int16_t)(htim4.Instance->CNT))/4;
 }*/
 
+menu();
 /* USER CODE END 0 */
 
 /**
@@ -217,7 +230,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); //servo   		q3
   //HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // silnik 1 	q1
-  HAL_TIM_PWM_START(&htim1, TIM_CHANNEL_4); // silnik 2		q2
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4); // silnik 2		q2
   __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); // serwo pozycja startowa
   //pid_init(pid1, kp, ki, kd); / silnik 1
   pid_init(pid2, kp, ki, kd);
@@ -227,14 +240,14 @@ int main(void)
 
 	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
 	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
-  motorB_setDirection(CW);
+  motorB_Direction(CW);
   for(int i=0; i<20; i++){
-	  motorB_setSpeed(50-i);
+	  motorB_move(50-i);
 	  HAL_Delay(10);
 
   }
   HAL_Delay(200);
-  motorB_stop();
+  motorB_stopMotor();
   /* USER CODE END 2 */
 
   //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
@@ -264,13 +277,13 @@ int main(void)
 
 
 
-	  servo_move(0, CW);
+	  servo_moveAngel(0, CW);
 	  HAL_Delay(1000);
-	  servo_move(45, CW);
+	  servo_moveAngel(45, CW);
 	  HAL_Delay(1000);
-	  servo_move(90, 0);
+	  servo_moveAngel(90, 0);
 	  HAL_Delay(1000);
-	  servo_move(180, CW);
+	  servo_moveAngel(180, CW);
 	  HAL_Delay(1000);
 	  /*__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); //0
 	  HAL_Delay(1000);
@@ -338,7 +351,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huar == huart2){
 
+	}
+	HAL_UART_Receive_IT(&huart1, &Received, 1);
+}
 /* USER CODE END 4 */
 
 /**
