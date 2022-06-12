@@ -27,7 +27,6 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "pid.h"
-#include "control_motor.h"
 #include "geometrik.h"
 #include "structposition.h"
 /* USER CODE END Includes */
@@ -39,11 +38,19 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define MIN_ANGEL 0
+#define MAX_ANGEL 180 //1800
+#define PWM_MIN 1000
+#define PWM_MAX 4000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+typedef enum
+{
+	CW = 1, // ruch zgodnie z ruchem wskazówek zegara
+	CCW = 0// ruch przeciwnie do rucho wskazówek zegara
+}MotorDirection;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -74,6 +81,97 @@ int _write(int file, char *ptr, int len) {
 	return len;
 }
 
+void motorA_setDirection(MotorDirection dir){
+	if(dir == CW){
+		HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
+	}
+
+	if(dir == CCW){
+		HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
+	}
+}
+
+void motorB_setDirection(MotorDirection dir){
+	if(dir == CW){
+		HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
+	}
+
+	if(dir == CCW){
+		HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_SET);
+	}
+}
+
+void motorA_move(int32_t pwm){
+	if(pwm > htim1.Instance->ARR){
+		pwm = htim1.Instance->ARR;
+	}
+	else if(pwm < -htim1.Instance->ARR){
+		pwm = -htim1.Instance->ARR;
+	}
+
+	if(pwm >= 0){
+		motorA_setDirection(CW);
+	}else{
+		motorA_setDirection(CWW);
+	}
+
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, abs(pwm));
+}
+
+void motorB_move(int32_t pwm){
+	if(pwm > htim1.Instance->ARR){
+		pwm = htim1.Instance->ARR;
+	}
+	else if(pwm < -htim1.Instance->ARR){
+		pwm = -htim1.Instance->ARR;
+	}
+
+	if(pwm >= 0){
+		motorB_setDirection(CW);
+	}else{
+		motorB_setDirection(CWW);
+	}
+
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, abs(pwm));
+}
+
+void motorA_stop(){
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
+	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
+}
+
+void motorB_stop(){
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 0);
+	HAL_GPIO_WritePin(BIN1_GPIO_Port, BIN1_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(BIN2_GPIO_Port, BIN2_Pin, GPIO_PIN_RESET);
+}
+
+// 45 = 450
+// step ((1000*(PWM_MAX - PWM_MIN) / (MAX_ANGEL - MIN_ANGEL));
+void servo_move(uint16_t angel, MotorDirection dir){
+	uint16_t pwm;
+	if(angel > MAX_ANGEL){
+		angel = MAX_ANGEL;
+	}
+	else if(angel < MIN_ANGEL){
+		angel = MIN_ANGEL;
+	}
+
+	if(dir == CW){
+		pwm = PWM_MIN + (angel*(PWM_MAX - PWM_MIN)/MAX_ANGEL); // excel mowi ze wylicza dobrze
+		// pwm = PWM_MIN + ((angel - MIN_ANGEL) * step) / 1000;
+	}
+	else{
+		pwm = PWM_MAX - (angel*(PWM_MAX - PWM_MIN)/MAX_ANGEL);
+	}
+
+	__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, pwm + 50);
+}
 /*void enc_position2(int16_t *position)
 {
 	position = ((int16_t)(htim4.Instance->CNT))/4;
@@ -117,29 +215,27 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //q1
-  //HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL); //q2
-  //servo_init(&htim15, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // powinien byc 2
-  //motorA_init(&htim1, TIM_CHANNEL_2);
-  //motorB_init(&htim1, TIM_CHANNEL_4);
-  //pid_init(pid1, kp, ki, kd); // limit jako ostatni argument?
-  //pid_init(pid2, kp, ki, kd);
+  HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); //servo   		q3
+  //HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // silnik 1 	q1
+  HAL_TIM_PWM_START(&htim1, TIM_CHANNEL_4); // silnik 2		q2
+  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); // serwo pozycja startowa
+  //pid_init(pid1, kp, ki, kd); / silnik 1
+  pid_init(pid2, kp, ki, kd);
 
-  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000);
-  //servo_move(900,CCW);
-  //motorB_setDirection(CW);
-	HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
-  /* USER CODE END 2 */
+  HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL); //silnik 2
+  //HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL); //silnik 1
+
+	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
+	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
+  motorB_setDirection(CW);
   for(int i=0; i<20; i++){
-	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 1000-i);
+	  motorB_setSpeed(50-i);
 	  HAL_Delay(10);
 
   }
-  //motorB_stop();
-  //HAL_Delay(200);
+  HAL_Delay(200);
+  motorB_stop();
+  /* USER CODE END 2 */
 
   //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
 	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
@@ -168,13 +264,20 @@ int main(void)
 
 
 
-
-	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000);
+	  servo_move(0, CW);
 	  HAL_Delay(1000);
-	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1500);
+	  servo_move(45, CW);
 	  HAL_Delay(1000);
-	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 2000);
+	  servo_move(90, 0);
 	  HAL_Delay(1000);
+	  servo_move(180, CW);
+	  HAL_Delay(1000);
+	  /*__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); //0
+	  HAL_Delay(1000);
+	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1500); //45
+	  HAL_Delay(1000);
+	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 2000); //90
+	  HAL_Delay(1000);*/
 
 
     /* USER CODE END WHILE */

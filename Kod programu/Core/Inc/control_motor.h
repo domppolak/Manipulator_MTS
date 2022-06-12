@@ -19,7 +19,7 @@
 #define SECOND_IN_MINUTE				60
 
 #define MIN_ANGEL 0
-#define MAX_ANGEL 90
+#define MAX_ANGEL 900
 #define MAX_SPEED 100
 
 #define PWM_MIN 1000
