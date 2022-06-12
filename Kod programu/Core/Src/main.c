@@ -65,6 +65,7 @@ typedef enum
   PidStruct *pid1, *pid2;
   Position Pos={0,0,0,0,0,0};
   float kp=0.3, ki=1.3, kd=0.5;
+  uint8_t znak;
 
 /* USER CODE END PV */
 
@@ -135,11 +136,11 @@ void motorA_move(int32_t pwm){
 }
 
 void motorB_move(int32_t pwm){
-	if(pwm > htim1.Instance->ARR){
-		pwm = htim1.Instance->ARR;
+	if(pwm > 100){
+		pwm = 100;
 	}
-	else if(pwm < -htim1.Instance->ARR){
-		pwm = -htim1.Instance->ARR;
+	else if(pwm < -100){
+		pwm = -100;
 	}
 
 	if(pwm >= 0){
@@ -189,7 +190,7 @@ void servo_moveAngel(uint16_t angel, MotorDirection dir){
 	position = ((int16_t)(htim4.Instance->CNT))/4;
 }*/
 
-menu();
+
 /* USER CODE END 0 */
 
 /**
@@ -228,6 +229,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
+  HAL_UART_Receive_IT(&huart2, &znak, 1);
   HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); //servo   		q3
   //HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // silnik 1 	q1
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4); // silnik 2		q2
@@ -255,6 +257,8 @@ int main(void)
 	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  menu();
+
   while (1)
   {
 	  /*if(!moveFlag){
@@ -276,15 +280,16 @@ int main(void)
 	  HAL_Delay(500);*/
 
 
-
-	  servo_moveAngel(0, CW);
-	  HAL_Delay(1000);
-	  servo_moveAngel(45, CW);
-	  HAL_Delay(1000);
-	  servo_moveAngel(90, 0);
-	  HAL_Delay(1000);
-	  servo_moveAngel(180, CW);
-	  HAL_Delay(1000);
+	  if(moveFlag){
+		  servo_moveAngel(0, CW);
+		  HAL_Delay(1000);
+		  servo_moveAngel(45, CW);
+		  HAL_Delay(1000);
+		  servo_moveAngel(90, CW);
+		  HAL_Delay(1000);
+		  servo_moveAngel(180, CW);
+		  HAL_Delay(1000);
+	  }
 	  /*__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); //0
 	  HAL_Delay(1000);
 	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1500); //45
@@ -353,10 +358,10 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(huar == huart2){
-
+	if(znak == 'm'){
+		moveFlag = 1;
 	}
-	HAL_UART_Receive_IT(&huart1, &Received, 1);
+	HAL_UART_Receive_IT(&huart2, &znak, 1);
 }
 /* USER CODE END 4 */
 
