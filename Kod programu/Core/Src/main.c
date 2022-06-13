@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "pid.h"
 #include "geometrik.h"
@@ -65,9 +66,15 @@ typedef enum
   Position Pos={0,0,0,0,0,0};
   float kp=0.3, ki=1.3, kd=0.5;
   uint8_t znak;
-  int moveq1 = 0, moveq2 = 0, moveq3 = 0;
+  uint8_t odebrano[15];
+  int moveq1 = 0, moveq2 = 0, moveq3 = 0, moveq = 0;
   int moveCoordinates = 0;
-  int16_t data[3];
+  char data[3];
+  int value = 20;
+  uint16_t katy[7] = {0, 30, 45, 60, 90, 135, 180};
+  int16_t pwm_tab[4] = {-100, -50, 50, 100};
+  int move = 0;
+  int itx = 0;
 
 /* USER CODE END PV */
 
@@ -84,6 +91,33 @@ void SystemClock_Config(void);
 int _write(int file, char *ptr, int len) {
 	HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, 50);
 	return len;
+}
+
+void indeks(uint8_t liczba){
+	if(liczba == '0'){
+		value = 0;
+	}
+	if(liczba == '1'){
+		value = 1;
+	}
+	if(liczba == '2'){
+		value = 2;
+	}
+	if(liczba == '3'){
+		value = 3;
+	}
+	if(liczba == '4'){
+		value = 4;
+	}
+	if(liczba == '5'){
+		value = 5;
+	}
+	if(liczba == '6'){
+		value = 6;
+	}
+	if(liczba == '7'){
+		value = 7;
+	}
 }
 
 void menu()
@@ -238,7 +272,7 @@ int main(void)
   MX_TIM6_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive(&huart2, &znak, 1, 50);
+  HAL_UART_Receive_IT(&huart2, &znak, 1);
   HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); //servo   		q3
   //HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // silnik 1 	q1
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4); // silnik 2		q2
@@ -251,51 +285,62 @@ int main(void)
 
 	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
 	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_SET);
-  motorB_Direction(CW);
-  for(int i=0; i<20; i++){
+  //motorB_Direction(CW);
+  /*for(int i=0; i<20; i++){
 	  motorB_move(50-i);
 	  HAL_Delay(10);
 
   }
   HAL_Delay(200);
-  motorB_stopMotor();
+  motorB_stopMotor();*/
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   menu();
-
   while (1)
   {
-	  /*if(!moveFlag){
-		  enc_pos1 = TIM2->CNT;
-		  enc_pos2 = TIM4->CNT;
-		  u1 = 0;
-		  u2 = 0;
-	  }
-	  if(moveFlag){
-		  u1 = pid_calculate(pid1,enc_pos1+Pos.q1,(TIM2->CNT));
-		  u2 = pid_calculate(pid2, enc_pos2+Pos.q2, (TIM4->CNT));
-
-	  }*/
-	  /*servo_move(0, CW);
-	  HAL_Delay(500);
-	  servo_move(45, CW);
-	  HAL_Delay(500);
-	  servo_move(90, CW);
-	  HAL_Delay(500);*/
-
-
 	  if(moveFlag == 1){
-		  servo_moveAngel(0, CW);
-		  HAL_Delay(1000);
-		  servo_moveAngel(45, CW);
+		  if(moveq == 1){
+			  if(moveq2 == 1 && move == 1){
+				  for(int i=0; i<15; i++){
+					  if(pwm_tab[value]>0)
+						  motorB_Direction(CW);
+					  else{
+						  motorB_Direction(CCW);
+					  }
+					  HAL_Delay(250);
+					  motorB_move(abs(pwm_tab[value]));
+					  moveq2 = 0;
+					  moveq = 0;
+					  move = 0;
+				  }
+				  HAL_Delay(200);
+				  motorB_stopMotor();
+			  }
+			  if(moveq3 == 1 && move == 1){
+					 servo_moveAngel(katy[value], CW);
+					 moveq3 = 0;
+					 move = 0;
+			  }
+		  }
+		  moveFlag = 0;
+	  }
+	  //menu();
+	  //HAL_UART_Receive(&huart2, &znak, 1, 50);
+
+		 /* servo_moveAngel(0, CW);
 		  HAL_Delay(1000);
 		  servo_moveAngel(90, CW);
-		  HAL_Delay(1000);
-		  servo_moveAngel(180, CW);
-		  HAL_Delay(1000);
-	  }
+		  HAL_Delay(1000);*/
+		  //servo_moveAngel(45, CW);
+		  //HAL_Delay(1000);
+		  //servo_moveAngel(90, CW);
+		  //HAL_Delay(1000);
+		  //servo_moveAngel(0, CCW);
+		  //HAL_Delay(1000);
+		  //menu();
+
 	  /*__HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1000); //0
 	  HAL_Delay(1000);
 	  __HAL_TIM_SET_COMPARE(&htim15, TIM_CHANNEL_1, 1500); //45
@@ -364,33 +409,65 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(huart->Instance == USART2){
-		if(znak == 'm'){ //move
-			HAL_UART_Receive(&huart2, &znak, 1, 50);
-			if(znak == '1'){
-			moveq1 = 1;
-			Pos.q1 = znak;
-			}
-			if(znak == '2'){
-				moveq2 = 1;
-				Pos.q2 = znak;
-			}
-			if(znak == '3'){
-				moveq3 = 1;
-			}
+	HAL_UART_Transmit(&huart2, &znak, 1, 100);
+	itx++;
+	if(znak == 'm'){
+		moveFlag = 1;
+	}
+	if(znak == 'q'){
+		moveq = 1;
+	}
+	if(znak == 'a'){
+		moveq1 = 1;
+	}
+	if(znak == 'b'){
+		moveq2 = 1;
+	}
+	if(znak == 'c'){
+		moveq3 = 1;
+	}
 
+	if(moveFlag == 1 && moveq == 1 && moveq2 == 1 && itx == 4){
+		indeks(znak);
+		move = 1;
+		itx = 0;
+	}
+	if(moveFlag == 1 && moveq == 1 && moveq3 == 1 && itx == 4){
+		indeks(znak);
+		move = 1;
+		itx = 0;
+	}
+
+	/*char *tmp;
+	if(data[0] == 'm'){
+		moveFlag = 1;
+	}
+	if(data[1] == 'q'){
+		if(data[2] == '1'){
+			moveq1 = 1;
+			tmp = strtok(data, " ");
+			tmp = strtok(data, " ");
+			tmp = tmp+1;
+			Pos.q1 = atoi(tmp);
 		}
-		if(znak == 'c') //coordinate
-		{
-			moveCoordinates = 1;
-			HAL_UART_Receive_IT(&huart2, &znak, 1);
-			data[0] = atoi(znak);
-			HAL_UART_Receive_IT(&huart2, &znak, 1);
-			data[1] = atoi(znak);
-			HAL_UART_Receive_IT(&huart2, &znak, 1);
-			data[2] = atoi(znak);
+		if(data[2] == '2'){
+			moveq2 = 1;
+			tmp = strtok(data, " ");
+			tmp = tmp+1;
+			Pos.q2 = atoi(tmp);
+		}
+		if(data[2] == '3'){
+			moveq3 = 1;
+			tmp = strtok(data, " ");
+			tmp = tmp+1;
+			Pos.q3 = atoi(tmp);
 		}
 	}
+
+	if(data[0] == 'c'){
+		moveCoordinates = 1;
+	}
+*/
 	HAL_UART_Receive_IT(&huart2, &znak, 1);
 }
 /* USER CODE END 4 */
