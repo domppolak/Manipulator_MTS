@@ -1,5 +1,4 @@
 "./Core/Src/control_motro.o"
-"./Core/Src/dma.o"
 "./Core/Src/frame.o"
 "./Core/Src/geometrik.o"
 "./Core/Src/gpio.o"

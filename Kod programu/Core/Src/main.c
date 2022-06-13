@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -66,6 +65,9 @@ typedef enum
   Position Pos={0,0,0,0,0,0};
   float kp=0.3, ki=1.3, kd=0.5;
   uint8_t znak;
+  int moveq1 = 0, moveq2 = 0, moveq3 = 0;
+  int moveCoordinates = 0;
+  int16_t data[3];
 
 /* USER CODE END PV */
 
@@ -78,6 +80,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 int _write(int file, char *ptr, int len) {
 	HAL_UART_Transmit(&huart2, (uint8_t*)ptr, len, 50);
 	return len;
@@ -86,12 +89,19 @@ int _write(int file, char *ptr, int len) {
 void menu()
 {
 	printf("Manipulator MTS\n\r");
-	printf("q1 %d", Pos.q1);
-	printf("q2 %d", Pos.q2);
-	printf("q3 %d", Pos.q3);
-	printf("X %d", Pos.x);
-	printf("Y %d", Pos.y);
-	printf("Z %d", Pos.z);
+	HAL_Delay(10);
+	printf("q1 %d\n\r", Pos.q1);
+	HAL_Delay(10);
+	printf("q2 %d\n\r", Pos.q2);
+	HAL_Delay(10);
+	printf("q3 %d\n\r", Pos.q3);
+	HAL_Delay(10);
+	printf("X %d\n\r", Pos.x);
+	HAL_Delay(10);
+	printf("Y %d\n\r", Pos.y);
+	HAL_Delay(10);
+	printf("Z %d\n\r", Pos.z);
+	HAL_Delay(10);
 }
 
 void motorA_Direction(MotorDirection dir){
@@ -224,12 +234,11 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM15_Init();
-  MX_DMA_Init();
   MX_TIM4_Init();
-  MX_USART2_UART_Init();
   MX_TIM6_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart2, &znak, 1);
+  HAL_UART_Receive(&huart2, &znak, 1, 50);
   HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1); //servo   		q3
   //HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2); // silnik 1 	q1
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4); // silnik 2		q2
@@ -252,9 +261,6 @@ int main(void)
   motorB_stopMotor();
   /* USER CODE END 2 */
 
-  //__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, 0);
-	//HAL_GPIO_WritePin(AIN1_GPIO_Port, AIN1_Pin, GPIO_PIN_RESET);
-	//HAL_GPIO_WritePin(AIN2_GPIO_Port, AIN2_Pin, GPIO_PIN_RESET);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   menu();
@@ -280,7 +286,7 @@ int main(void)
 	  HAL_Delay(500);*/
 
 
-	  if(moveFlag){
+	  if(moveFlag == 1){
 		  servo_moveAngel(0, CW);
 		  HAL_Delay(1000);
 		  servo_moveAngel(45, CW);
@@ -358,8 +364,32 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	if(znak == 'm'){
-		moveFlag = 1;
+	if(huart->Instance == USART2){
+		if(znak == 'm'){ //move
+			HAL_UART_Receive(&huart2, &znak, 1, 50);
+			if(znak == '1'){
+			moveq1 = 1;
+			Pos.q1 = znak;
+			}
+			if(znak == '2'){
+				moveq2 = 1;
+				Pos.q2 = znak;
+			}
+			if(znak == '3'){
+				moveq3 = 1;
+			}
+
+		}
+		if(znak == 'c') //coordinate
+		{
+			moveCoordinates = 1;
+			HAL_UART_Receive_IT(&huart2, &znak, 1);
+			data[0] = atoi(znak);
+			HAL_UART_Receive_IT(&huart2, &znak, 1);
+			data[1] = atoi(znak);
+			HAL_UART_Receive_IT(&huart2, &znak, 1);
+			data[2] = atoi(znak);
+		}
 	}
 	HAL_UART_Receive_IT(&huart2, &znak, 1);
 }
